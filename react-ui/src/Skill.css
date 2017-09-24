@@ -1,0 +1,49 @@
+.btn{
+  width: 100%;
+  border-bottom: transparent;
+  border-radius: 2px 2px 0 0;
+}
+
+.panel {
+  border-top: transparent;
+  border-radius: 0 0 2px 2px;
+}
+
+.divStyle {
+  animation: normWidth .35s forwards;
+}
+.openStyle {
+  position: relative;
+  float: right;
+  animation: divWidth .35s forwards;
+}
+@keyframes divWidth {
+  0% { width: 100% }
+  100% { width: 200% }
+}
+@keyframes normWidth {
+  0% { float: right; width: 200% }
+  100% { float: left; width: 100% }
+}
+
+.buttonStyle {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background-color: #DFDFDF;
+  color: #757575;
+  border-color: #BDBDBD;
+  border-bottom: transparent;
+  border-radius: 2px 2px 0 0;
+}
+.moreStyle {
+  float: right;
+  color: #FFC107;
+}
+.panelStyle  { 
+  background-color: #DFDFDF;
+  color: #757575;
+  border-color: #BDBDBD;
+  border-top: transparent;
+  border-radius: 0 0 2px 2px;
+}
