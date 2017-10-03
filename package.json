@@ -7,6 +7,9 @@
   },
   "scripts": {
     "start": "node server",
+    "test": "mocha",
+    "server": "nodemon server",
+    "start-dev": "cd react-ui && npm start",
     "heroku-postbuild": "cd react-ui/ && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
   },
   "cacheDirectories": [

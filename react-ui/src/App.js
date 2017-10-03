@@ -2,50 +2,15 @@ import React, { Component } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import './App.css';
 import 'react-bootstrap';
-import CircleVisualization from './CircleVisualization';
 import Skill from './Skill';
+import data from './data.json';
 
 class App extends Component {
-  constructor(){
+  constructor() {
     super();
     this.state = {
-      counts: [
-        {          
-          "_id": {
-              "$oid": "59b75b0e276a891410ffb042"
-          },
-          "date": {
-              "$date": "2017-09-12T03:57:02.684Z"
-          },
-          "skills": [
-            {
-                "name": "javascript",
-                "stackOverflow": 1467952,
-                "indeed": 168,
-                "twitter": 0
-            },
-            {
-                "name": "java",
-                "stackOverflow": 1310160,
-                "indeed": 199,
-                "twitter": 0
-            },
-            {
-                "name": "c#",
-                "stackOverflow": 1134760,
-                "indeed": 38,
-                "twitter": 0
-            },
-            {
-                "name": "php",
-                "stackOverflow": 1119502,
-                "indeed": 63,
-                "twitter": 0
-            }        
-          ]
-        }
-      ]  
-    }
+      skills: data
+    } 
   }
   render() {
     return (
@@ -57,11 +22,18 @@ class App extends Component {
         </header>
         <main>
         <Row>
-          <Col xs={12} sm={8}>
-            <CircleVisualization />
+          <Col xs={ 12 } sm={ 8 }>
+            
+            
           </Col> 
-          <Col xs={12} sm={4}>
-            <Skill props={this.state.counts[0].skills[0]}/>
+          <Col xs={ 12 } sm={ 4 }>
+          {this.state.skills[0].map((skill, i) =>{
+            return (
+            <Skill 
+              key={ i }
+              skill={ skill }/>
+            )
+          })}
           </Col> 
         </Row>
         </main>

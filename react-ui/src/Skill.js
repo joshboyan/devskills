@@ -5,28 +5,37 @@ import { Row, Col, Button, Panel } from 'react-bootstrap';
 import FaPlus from 'react-icons/lib/fa/plus';
 import FaMinus from 'react-icons/lib/fa/minus';
 import './Skill.css';
+import axios from 'axios';
+import SkillChart from './SkillChart';
 
 class Skill extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: false
+      open: false,
+      results: []
     };
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.setState({ open: !this.state.open })
+    axios.get(`https://devskills-api.herokuapp.com/api/skill/${this.props.skill.name}?key=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.Impvc2gxMSI.3I3e5kumdTCtVDTXkCLdh1WQGZGzkmIRhl7EPa4mirc`)
+      .then( results => {
+        this.setState({
+          results
+        });
+      }).catch( err => {
+        console.error(err);
+      });
   }
 
   render() {
-    {/*const openStyle = {
-      float: 'right',
-      width: '200%',
-      transition: 'width',
-      transitionDuration: '346.445ms',
-      transitionDelay: '3.5545ms'
-    }*/}
-    const {name, indeed, twitter, stackOverflow} = this.props.props
+    const {name, indeed, twitter, stackOverflow} = this.props.skill
     return (
       <div className={this.state.open ? 'openStyle' : 'divStyle'} >
         <Button 
-          onClick={ ()=> this.setState({ open: !this.state.open })}
+          onClick={ () => this.handleClick() }
           className='buttonStyle'>
           <h2>{name}</h2>
           <div>
@@ -46,10 +55,15 @@ class Skill extends React.Component {
           </div>
         </Button>
         <Panel 
-          collapsible expanded={this.state.open}
+          collapsible expanded={this.state.open} 
+          onClick={ ()=> this.handleClick() }
           className='panelStyle'>
-          <Row></Row>
-          <Col xs={12} sm={7}></Col>
+          <Row>
+          <Col xs={12} sm={7}>
+            {this.state.results.length > 0 ?
+            <SkillChart chartData={ this.state.results }/> :
+            null }
+          </Col>
           <Col xs={12} sm={5}>
             <h4>Free Resources</h4>
             <ul>
@@ -59,6 +73,7 @@ class Skill extends React.Component {
               <li>old stuff</li>
             </ul>
           </Col>
+          </Row>
         </Panel>
       </div>
     );

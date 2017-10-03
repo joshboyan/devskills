@@ -9,23 +9,6 @@
   border-radius: 0 0 2px 2px;
 }
 
-.divStyle {
-  animation: normWidth .35s forwards;
-}
-.openStyle {
-  position: relative;
-  float: right;
-  animation: divWidth .35s forwards;
-}
-@keyframes divWidth {
-  0% { width: 100% }
-  100% { width: 200% }
-}
-@keyframes normWidth {
-  0% { float: right; width: 200% }
-  100% { float: left; width: 100% }
-}
-
 .buttonStyle {
   display: flex;
   justify-content: space-between;
@@ -46,4 +29,23 @@
   border-color: #BDBDBD;
   border-top: transparent;
   border-radius: 0 0 2px 2px;
+}
+
+@media screen and (min-width: 768px) {
+  .divStyle {
+    animation: normWidth .35s forwards;
+  }
+  .openStyle {
+    position: relative;
+    float: right;
+    animation: divWidth .35s forwards;
+  }
+  @keyframes divWidth {
+    0% { width: 100% }
+    100% { width: 200% }
+  }
+  @keyframes normWidth {
+    0% { float: right; width: 200% }
+    100% { float: left; width: 100% }
+  }
 }
