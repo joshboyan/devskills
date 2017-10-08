@@ -2,19 +2,24 @@ import React from 'react';
 // require `react-d3-basic` for Line chart component.
 const LineChart = require('react-d3-basic').LineChart;
 
-var width = 500,
+var width = 300,
     height = 200,
-    margins = { left: 15, right: 5, top: 0, bottom: 50 },
-    title = "User sample",
+    margins = { left: 25, right: 5, top: 0, bottom: 50 },
     // chart series
     // field: is what field your data want to be selected
     // name: the name of the field that display in legend
     // color: what color is the line
     chartSeries = [
+      
       {
-        field: 'BMI',
-        name: 'BMI',
-        color: '#000000'
+        field: 'twitter',
+        name: 'Twitter',
+        color: '#741472'
+      },
+      {
+        field: 'indeed',
+        name: 'Indeed',
+        color: '#005F45'
       }
     ],
     // your x accessor
@@ -28,7 +33,6 @@ const SkillChart = ({ chartData }) => {
     <div>
       <LineChart
         margins={margins}
-        title={title}
         data={chartData}
         width={width}
         height={height}

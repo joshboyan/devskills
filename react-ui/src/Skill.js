@@ -22,8 +22,12 @@ class Skill extends React.Component {
     this.setState({ open: !this.state.open })
     axios.get(`https://devskills-api.herokuapp.com/api/skill/${this.props.skill.name}?key=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.Impvc2gxMSI.3I3e5kumdTCtVDTXkCLdh1WQGZGzkmIRhl7EPa4mirc`)
       .then( results => {
+        const formattedData = results.data.map((elem, i) => {
+          elem.index = i;
+          return elem;
+        })
         this.setState({
-          results
+          results: formattedData
         });
       }).catch( err => {
         console.error(err);
