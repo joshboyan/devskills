@@ -5,13 +5,11 @@ import 'react-bootstrap';
 import Skill from './Skill';
 import data from './data.json';
 
-class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      skills: data
-    } 
-  }
+export default class App extends Component {
+  state = {
+    skills: data
+  } 
+
   render() {
     return (
       <div className="App">
@@ -41,5 +39,3 @@ class App extends Component {
     );
   }
 }
-
-export default App;

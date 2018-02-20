@@ -31,6 +31,10 @@
   border-radius: 0 0 2px 2px;
 }
 
+.in {
+  display: block;
+}
+
 @media screen and (min-width: 768px) {
   .divStyle {
     animation: normWidth .35s forwards;

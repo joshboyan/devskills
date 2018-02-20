@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Row, Col, Button, Panel } from 'react-bootstrap';
 //import FaArrowDown from 'react-icons/lib/fa/arrow-down';
 //import FaArrowUp from 'react-icons/lib/fa/arrow-up';
@@ -8,17 +8,14 @@ import './Skill.css';
 import axios from 'axios';
 import SkillChart from './SkillChart';
 
-class Skill extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      open: false,
-      results: []
-    };
-    this.handleClick = this.handleClick.bind(this);
-  }
+export default class Skill extends Component {
+  state = {
+    open: false,
+    results: []
+  };
+    
 
-  handleClick() {
+  handleClick = () => {
     this.setState({ open: !this.state.open })
     axios.get(`https://devskills-api.herokuapp.com/api/skill/${this.props.skill.name}?key=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.Impvc2gxMSI.3I3e5kumdTCtVDTXkCLdh1WQGZGzkmIRhl7EPa4mirc`)
       .then( results => {
@@ -64,9 +61,11 @@ class Skill extends React.Component {
           className='panelStyle'>
           <Row>
           <Col xs={12} sm={7}>
-            {this.state.results.length > 0 ?
-            <SkillChart chartData={ this.state.results }/> :
-            null }
+            {
+              this.state.results.length > 0 ?
+              <SkillChart chartData={ this.state.results }/> :
+              null 
+            }
           </Col>
           <Col xs={12} sm={5}>
             <h4>Free Resources</h4>
@@ -83,5 +82,3 @@ class Skill extends React.Component {
     );
   }
 }
-
-export default Skill;
