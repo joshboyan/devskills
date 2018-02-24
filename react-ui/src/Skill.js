@@ -14,7 +14,6 @@ export default class Skill extends Component {
     results: []
   };
     
-
   handleClick = () => {
     this.setState({ open: !this.state.open })
     axios.get(`https://devskills-api.herokuapp.com/api/skill/${this.props.skill.name}?key=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.Impvc2gxMSI.3I3e5kumdTCtVDTXkCLdh1WQGZGzkmIRhl7EPa4mirc`)
@@ -32,9 +31,16 @@ export default class Skill extends Component {
   }
 
   render() {
-    const {name, indeed, twitter, stackOverflow} = this.props.skill
+    const {
+      name, 
+      indeed, 
+      twitter, 
+      stackOverflow } = this.props.skill
+
+    const { open, results } = this.state
+
     return (
-      <div className={this.state.open ? 'openStyle' : 'divStyle'} >
+      <div className={open ? 'openStyle' : 'divStyle'} >
         <Button 
           onClick={ () => this.handleClick() }
           className='buttonStyle'>
@@ -49,22 +55,22 @@ export default class Skill extends Component {
             {/* this.state.trending < 1 ? < FaArrowDown />: <FaArrowUp />*/}
           </p>
           <p className='moreStyle'>
-            {this.state.open ?
-              <span>less <FaMinus /> </span> : 
-              <span>more <FaPlus /></span>  }
+            {
+              open ?
+                <span>less <FaMinus /> </span> : 
+                <span>more <FaPlus /></span>  
+            }
           </p>
           </div>
         </Button>
         <Panel 
-          collapsible expanded={this.state.open} 
+          collapsible expanded={open} 
           onClick={ ()=> this.handleClick() }
           className='panelStyle'>
           <Row>
           <Col xs={12} sm={7}>
             {
-              this.state.results.length > 0 ?
-              <SkillChart chartData={ this.state.results }/> :
-              null 
+              results.length > 0 && <SkillChart chartData={ results }/>
             }
           </Col>
           <Col xs={12} sm={5}>
